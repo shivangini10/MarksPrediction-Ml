@@ -1,0 +1,90 @@
+<!-- Student Mark Predictor App GUI -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Mark Predictor ML App</title>
+
+    <style>
+        h1 { color: blue; text-align: center; } /* CSS for heading h1 */
+
+        /* Centering the form */
+        .container {
+            width: 50%;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Button CSS */
+        .button_css {
+            color: #494949 !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #ffffff;
+            padding: 15px;
+            border: 3px solid #494949 !important;
+            display: inline-block;
+            transition: all 0.4s ease 0s;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button_css:hover {
+            color: #ffffff !important;
+            background: #f6b93b;
+            border-color: #f6b93b !important;
+        }
+
+        /* Input field */
+        input[type="number"] {
+            width: 60%;
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        /* Styling for image */
+        .banner {
+            width: 100%;
+            display: block;
+        }
+
+        /* Prediction text */
+        .prediction {
+            font-size: 20px;
+            color: green;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Show University Banner -->
+    <div>
+        <img src="{{ url_for('static', filename='images/SBSSU.png') }}" alt="University Banner" class="banner">
+    </div>
+
+    <div class="container">
+        <!-- Form to Get Input for Predicting Marks -->
+        <form action="{{ url_for('predict') }}" method="post">
+            <h1>*** Enter Your Study Hours to Predict Marks ***</h1>
+
+            <input type="number" name="study_hours" placeholder="Enter Study Hours" required>
+            <br><br>
+
+            <!-- Submit Button -->
+            <button type="submit" class="button_css"><strong>Predict Marks</strong></button>
+        </form>
+
+        <!-- Show Predicted Output using ML Model -->
+        <div class="prediction">
+            {{ prediction_text }}
+        </div>
+    </div>
+
+</body>
+</html>
